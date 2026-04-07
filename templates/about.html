@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Kudusai Thozhil{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<div class="bg-dark text-white py-5 text-center header-banner">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-shadow">Our Story</h1>
+        <p class="lead fs-4">Discover the traditional roots of Kudusai Thozhil.</p>
+    </div>
+</div>
+
+<!-- Our Story Section -->
+<section class="py-5 bg-white">
+    <div class="container my-5">
+        <div class="row align-items-center">
+            <div class="col-md-6 px-md-5 order-2 order-md-1 mt-4 mt-md-0">
+                <h2 class="fw-bold mb-4 text-brand-maroon">From Our Home to Yours</h2>
+                <p class="lead text-muted">Kudusai Thozhil started as a small home-based initiative driven by a simple passion: to bring traditional grandma's recipes back to the modern world.</p>
+                <p class="text-muted">In today's fast-paced world, the authentic taste of hand-ground masalas is slowly fading. We wanted to preserve these age-old culinary secrets. Every spice blend we create is a tribute to our heritage, carefully crafted in small batches using the finest ingredients sourced directly from local farmers.</p>
+            </div>
+            <div class="col-md-6 order-1 order-md-2">
+                <!-- Placeholder image for the story section -->
+                <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grinding spices traditionally" class="img-fluid rounded shadow-lg">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Our Mission & Quality Section -->
+<section class="py-5 bg-light-custom">
+    <div class="container my-5 text-center">
+        <h2 class="fw-bold mb-4 text-brand-orange">Our Mission & Quality</h2>
+        <p class="lead text-muted mb-5 mx-auto mission-text">We are committed to delivering 100% natural, preservative-free hand-ground spices that elevate your everyday cooking into a feast.</p>
+        
+        <div class="row g-4 justify-content-center mt-2">
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 border-top border-4 border-brand-maroon">
+                    <i class="bi bi-flower1 fs-1 text-brand-maroon"></i>
+                    <h4 class="mt-3 fw-bold">100% Natural</h4>
+                    <p class="text-muted small">No artificial colors or flavors. Just pure, unadulterated spices to enhance your meals.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 border-top border-4 border-brand-orange">
+                    <i class="bi bi-shield-check fs-1 text-brand-orange"></i>
+                    <h4 class="mt-3 fw-bold">Preservative Free</h4>
+                    <p class="text-muted small">Freshly ground and packed without harmful chemicals, ensuring safety for your family.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="p-4 bg-white rounded shadow-sm h-100 border-top border-4 border-brand-brown">
+                    <i class="bi bi-mortarboard-fill fs-1 text-brand-brown"></i>
+                    <h4 class="mt-3 fw-bold">Hand Ground</h4>
+                    <p class="text-muted small">Retaining natural oils and authentic aroma through careful, traditional grinding methods.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

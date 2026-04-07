@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .hero-section {
+        /* Uses a black transparent overlay over a spices/masala background image to make text pop */
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                    url('https://images.unsplash.com/photo-1596040033229-a9821ebd058d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        min-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+    }
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+    .products-section {
+        background-color: var(--bg-light) !important;
+    }
+    .products-title {
+        color: var(--brand-maroon);
+    }
+    .product-card img {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+
+<div class="hero-section">
+    <div class="container px-4">
+        <h1 class="hero-title mb-4">Authentic Home-made Masalas</h1>
+        <p class="lead mb-5 fw-medium text-white fs-4 text-shadow">Experience the traditional taste of India with our premium, hand-ground spices.</p>
+        <a href="{% url 'products' %}" class="btn btn-brand btn-lg px-5 py-3 fs-5 rounded-pill shadow-lg">Shop Now</a>
+    </div>
+</div>
+
+<!-- Our Products Section -->
+<section class="py-5 bg-light products-section">
+    <div class="container my-4">
+        <h2 class="text-center mb-5 fw-bold products-title">Our Products</h2>
+        
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Product Card 1 -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="static/images/turmeric.webp" class="card-img-top" alt="Turmeric Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Turmeric Powder</h5>
+                        <p class="card-text text-muted mb-4">₹120.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Turmeric Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Card 2 -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="static/images/chilli.webp" class="card-img-top" alt="Chilli Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Chilli Powder</h5>
+                        <p class="card-text text-muted mb-4">₹150.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Chilli Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Card 3 -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="static/images/garam.webp" class="card-img-top" alt="Garam Masala">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Garam Masala</h5>
+                        <p class="card-text text-muted mb-4">₹180.00 / 200g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Garam Masala')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Product Card 4 -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="static/images/chic.webp" class="card-img-top" alt="Chicken Masala">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Chicken Masala</h5>
+                        <p class="card-text text-muted mb-4">₹160.00 / 200g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Chicken Masala')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

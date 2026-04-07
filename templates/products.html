@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Our Products - Kudusai Thozhil{% endblock %}
+
+{% block extra_css %}
+<style>
+    .header-banner {
+        background: linear-gradient(rgba(128, 0, 0, 0.75), rgba(139, 69, 19, 0.75));
+    }
+    .product-img {
+        height: 200px;
+        object-fit: cover;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Header Banner -->
+<div class="bg-dark text-white py-5 text-center header-banner">
+    <div class="container">
+        <h1 class="display-4 fw-bold text-shadow">Our Authentic Products</h1>
+        <p class="lead fs-4">Explore our full range of premium, hand-ground spices and masalas.</p>
+    </div>
+</div>
+
+<!-- Products Grid -->
+<section class="py-5 bg-light products-section">
+    <div class="container my-4">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <!-- Turmeric -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/turmeric.webp' %}" class="card-img-top product-img" alt="Turmeric Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Turmeric Powder</h5>
+                        <p class="card-text text-muted mb-4">₹120.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Turmeric Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Chilli -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/chilli.webp' %}" class="card-img-top product-img" alt="Chilli Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Chilli Powder</h5>
+                        <p class="card-text text-muted mb-4">₹150.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Chilli Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Garam Masala -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/garam.webp' %}" class="card-img-top product-img" alt="Garam Masala">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Garam Masala</h5>
+                        <p class="card-text text-muted mb-4">₹180.00 / 200g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Garam Masala')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Chicken Masala -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/chic.webp' %}" class="card-img-top product-img" alt="Chicken Masala">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Chicken Masala</h5>
+                        <p class="card-text text-muted mb-4">₹160.00 / 200g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Chicken Masala')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Coriander Powder -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/cori.webp' %}" class="card-img-top product-img" alt="Coriander Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Coriander Powder</h5>
+                        <p class="card-text text-muted mb-4">₹130.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Coriander Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Pepper Powder -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/pep.webp' %}" class="card-img-top product-img" alt="Pepper Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Pepper Powder</h5>
+                        <p class="card-text text-muted mb-4">₹200.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Pepper Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Cumin Powder -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/cum.webp' %}" class="card-img-top product-img" alt="Cumin Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Cumin Powder</h5>
+                        <p class="card-text text-muted mb-4">₹190.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Cumin Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Rasam Powder -->
+            <div class="col">
+                <div class="card h-100 product-card border-0 shadow-sm">
+                    <img src="{% static 'images/ras.webp' %}" class="card-img-top product-img" alt="Rasam Powder">
+                    <div class="card-body d-flex flex-column text-center">
+                        <h5 class="card-title fw-bold">Rasam Powder</h5>
+                        <p class="card-text text-muted mb-4">₹140.00 / 250g</p>
+                        <button type="button" class="btn btn-outline-danger mt-auto rounded-pill fw-medium" onclick="addToCart('Rasam Powder')">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
