@@ -1,47 +1,40 @@
-# 🌶️ Masala Store Website (Kudusai Thozhil)
+# Masala Store - Open QA Challenge 🚀
 
-This project is a simple E-commerce web application developed for a homemade masala business. It focuses on product listing and inventory management.
+Welcome to the Masala Store! This is a sample E-commerce website built using Django and Bootstrap 5. 
 
----
+On the outside, it looks like a simple website selling spices. But on the inside, I have intentionally added several bugs. This project is created for QA Engineers and Software Testers to practice their manual testing skills.
 
-##  Features
+## Technology Used
+* Backend: Python, Django
+* Frontend: HTML, CSS, Bootstrap 5
+* Database: SQLite
 
--  Product Listing
--  Inventory / Stock Management
--  Responsive UI (Mobile Friendly)
--  Easy Navigation for Users
+## How to Run the Project 🛠️
 
----
+To run this project on your local computer, follow these simple steps:
 
-##  Tech Stack
+1. Clone this repository to your computer.
+2. Open your terminal or command prompt.
+3. Install Django if you don't have it:
+   `pip install django`
+4. Go to the project folder and run the database setup:
+   `python manage.py migrate`
+5. Start the local server:
+   `python manage.py runserver`
+6. Open your web browser and go to `http://127.0.0.1:8000`
 
-### Backend
-- Python
-- Django Framework
+## The Challenge 🐞
 
-### Frontend
-- HTML
-- Bootstrap 5
-- JavaScript
+Your task is to test this website and find the hidden bugs. There are a total of 6 intentional bugs. Some are frontend design issues, and some are critical backend logic errors.
 
-### Database
-- SQLite (default for development)
-- PostgreSQL / MySQL (for production)
+**Testing Areas to Focus On:**
+* Adding products to the cart (Try different numbers).
+* Checking the cart count in the top menu.
+* The total amount calculation on the checkout page.
+* The Contact Us form submission.
+* Clicking buttons on the products page.
 
----
+**How to Report:**
+If you find a bug, please go to the "Issues" tab in this GitHub repository and create a new issue. Write down the steps to reproduce the bug and what the expected result should be.
 
-##  Project Purpose
-
-This project is created as a small-scale business model (Kudusai Thozhil) to help manage and sell homemade masala products online.
-
----
-
-##  Installation & Setup
-
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/Masala_Store.git
-2. Install Django:
-```bash
-pip install django
-
+Good luck and happy bug hunting!
