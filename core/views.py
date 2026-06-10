@@ -21,25 +21,27 @@ def add_to_cart(request):
     if request.method == 'POST':
         product_name = request.POST.get('product_name')
         quantity_str = request.POST.get('quantity', '1')
-        
+
         try:
             quantity = int(quantity_str)
         except ValueError:
             quantity = 1
 
+        if quantity <= 0:
+            quantity = 1
+
         cart = request.session.get('cart', {})
 
-        # Bug: This overwrites the quantity instead of adding to it.
-        cart[product_name] = quantity
+        cart[product_name] = cart.get(product_name, 0) + quantity
 
         request.session['cart'] = cart
-        
-       
-        request.session['cart_count'] = sum(cart.values()) 
-        
+
+
+        request.session['cart_count'] = sum(cart.values())
+
         request.session.modified = True
 
-   
+
     return redirect('products')
 
 def checkout(request):
@@ -69,8 +71,7 @@ def checkout(request):
             'total': item_total,
         })
 
-    # INTENTIONAL QA BUG: Add a hidden ₹50 to the final total.
-    final_total = subtotal + 50
+    final_total = subtotal
 
     context = {'cart_items': cart_items, 'subtotal': subtotal, 'final_total': final_total}
     return render(request, 'checkout.html', context)

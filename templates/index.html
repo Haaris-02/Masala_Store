@@ -4,62 +4,550 @@
 {% block title %}Home - Masala Store{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<div class="p-5 mb-5 bg-white rounded-4 shadow-sm text-center">
-    <div class="container-fluid py-5">
-        <h1 class="display-4 fw-bold mb-3" style="color: var(--brand-dark);">Authentic Spices, Ground with Love</h1>
-        <p class="col-md-8 mx-auto fs-5 text-muted mb-4">
-            Experience the rich, traditional flavors of homemade masalas. Freshly ground, pure, and delivered straight to your kitchen.
-        </p>
-        <a href="{% url 'products' %}" class="btn btn-lg px-5 shadow-sm" style="background-color: var(--brand-red); color: var(--brand-offwhite);">
-            Shop Now <i class="fas fa-arrow-right ms-2"></i>
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-orange) 100%);
+        color: white;
+        padding: 80px 0;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -10%;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-card {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(139, 38, 29, 0.2) !important;
+    }
+
+    .product-card {
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .product-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 50px rgba(139, 38, 29, 0.15) !important;
+    }
+
+    .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: var(--brand-orange);
+        color: white;
+        padding: 8px 15px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 10;
+    }
+
+    .add-to-cart-btn {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .product-card:hover .add-to-cart-btn {
+        opacity: 1;
+    }
+
+    .stat-box {
+        text-align: center;
+        padding: 30px;
+        transition: all 0.3s ease;
+    }
+
+    .stat-box:hover {
+        background-color: rgba(139, 38, 29, 0.05);
+        border-radius: 15px;
+    }
+
+    .testimonial-card {
+        border-left: 5px solid var(--brand-red);
+        padding: 25px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, var(--brand-red), var(--brand-orange));
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+        margin: 0 auto 20px;
+    }
+
+    .section-title {
+        position: relative;
+        display: inline-block;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--brand-red), var(--brand-orange));
+        border-radius: 2px;
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .cta-section {
+        background: linear-gradient(135deg, var(--brand-red) 0%, var(--brand-orange) 100%);
+        color: white;
+        padding: 60px 0;
+        border-radius: 20px;
+        text-align: center;
+    }
+</style>
+
+<!-- HERO SECTION -->
+<div class="hero-section mb-5">
+    <div class="container hero-content">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <h1 class="display-3 fw-bold mb-4">Authentic Spices, Ground with Love</h1>
+                <p class="fs-5 mb-4 opacity-90">
+                    Experience the rich, traditional flavors of homemade masalas. Freshly ground, pure, and delivered straight to your kitchen. From our family to yours!
+                </p>
+                <div class="d-flex gap-3 mb-4">
+                    <a href="{% url 'products' %}" class="btn btn-light btn-lg fw-bold px-5">
+                        Shop Now <i class="fas fa-arrow-right ms-2"></i>
+                    </a>
+                    <a href="{% url 'about' %}" class="btn btn-outline-light btn-lg fw-bold px-5">
+                        Learn More
+                    </a>
+                </div>
+                <div class="d-flex gap-4">
+                    <div>
+                        <h4 class="fw-bold">5000+</h4>
+                        <small>Happy Customers</small>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold">100%</h4>
+                        <small>Pure & Authentic</small>
+                    </div>
+                    <div>
+                        <h4 class="fw-bold">24/7</h4>
+                        <small>Customer Support</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="text-center">
+                    <i class="fas fa-pepper-hot" style="font-size: 200px; opacity: 0.3; color: white;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WHY CHOOSE US SECTION -->
+<div class="container mb-5 py-5">
+    <h2 class="text-center fw-bold mb-5">
+        <span class="section-title">Why Choose Masala Store?</span>
+    </h2>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div style="font-size: 48px; color: var(--brand-red); margin-bottom: 15px;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">100% Organic</h5>
+                <p class="text-muted small">No additives, no preservatives. Pure spices sourced directly from farmers.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div style="font-size: 48px; color: var(--brand-orange); margin-bottom: 15px;">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Fresh & Fragrant</h5>
+                <p class="text-muted small">Freshly ground daily to preserve maximum aroma and flavor.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div style="font-size: 48px; color: var(--brand-red); margin-bottom: 15px;">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Fast Delivery</h5>
+                <p class="text-muted small">Quick shipping to your doorstep. Express delivery available in most areas.</p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="feature-card card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div style="font-size: 48px; color: var(--brand-orange); margin-bottom: 15px;">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Quality Assured</h5>
+                <p class="text-muted small">Every product is tested for purity and taste. Money-back guarantee!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURED PRODUCTS SECTION -->
+<div class="container mb-5 py-5">
+    <h2 class="text-center fw-bold mb-5">
+        <span class="section-title">Featured Masalas</span>
+    </h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        <!-- Garam Masala -->
+        <div class="col">
+            <div class="product-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="position: relative;">
+                    <img src="{% static 'images/garam.webp' %}" class="card-img-top" alt="Garam Masala" style="height: 220px; object-fit: cover;">
+                    <span class="product-badge">Popular</span>
+                </div>
+                <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Garam Masala</h5>
+                    <p class="card-text text-muted small mb-3">Perfect blend for rich, aromatic flavor in curries.</p>
+                    <p class="fw-bold fs-5 mt-auto mb-3" style="color: var(--brand-orange);">₹180</p>
+                    <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_name" value="Garam Masala">
+                        <div class="input-group">
+                            <input type="text" inputmode="numeric" pattern="[0-9]*" name="quantity" class="form-control text-center" value="1" style="width: 60%; border-color: #dee2e6;">
+                            <button type="submit" class="btn add-to-cart-btn" style="background-color: var(--brand-red); color: white; width: 40%;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Turmeric Powder -->
+        <div class="col">
+            <div class="product-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="position: relative;">
+                    <img src="{% static 'images/turmeric.webp' %}" class="card-img-top" alt="Turmeric Powder" style="height: 220px; object-fit: cover;">
+                    <span class="product-badge" style="background-color: #16a34a;">Health+</span>
+                </div>
+                <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Turmeric Powder</h5>
+                    <p class="card-text text-muted small mb-3">Pure organic turmeric with high curcumin content.</p>
+                    <p class="fw-bold fs-5 mt-auto mb-3" style="color: var(--brand-orange);">₹120</p>
+                    <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_name" value="Turmeric Powder">
+                        <div class="input-group">
+                            <input type="text" inputmode="numeric" pattern="[0-9]*" name="quantity" class="form-control text-center" value="1" style="width: 60%; border-color: #dee2e6;">
+                            <button type="submit" class="btn add-to-cart-btn" style="background-color: var(--brand-red); color: white; width: 40%;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chilli Powder -->
+        <div class="col">
+            <div class="product-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="position: relative;">
+                    <img src="{% static 'images/chilli.webp' %}" class="card-img-top" alt="Chilli Powder" style="height: 220px; object-fit: cover;">
+                    <span class="product-badge" style="background-color: #d97706;">Hot</span>
+                </div>
+                <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Chilli Powder</h5>
+                    <p class="card-text text-muted small mb-3">Vibrant red chilli for the perfect heat and color.</p>
+                    <p class="fw-bold fs-5 mt-auto mb-3" style="color: var(--brand-orange);">₹150</p>
+                    <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_name" value="Chilli Powder">
+                        <div class="input-group">
+                            <input type="text" inputmode="numeric" pattern="[0-9]*" name="quantity" class="form-control text-center" value="1" style="width: 60%; border-color: #dee2e6;">
+                            <button type="submit" class="btn add-to-cart-btn" style="background-color: var(--brand-red); color: white; width: 40%;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Coriander Powder -->
+        <div class="col">
+            <div class="product-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+                <div style="position: relative;">
+                    <img src="{% static 'images/cori.webp' %}" class="card-img-top" alt="Coriander Powder" style="height: 220px; object-fit: cover;">
+                    <span class="product-badge" style="background-color: #0891b2;">Best Seller</span>
+                </div>
+                <div class="card-body d-flex flex-column p-4">
+                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Coriander Powder</h5>
+                    <p class="card-text text-muted small mb-3">Aromatic coriander with warm, citrusy notes.</p>
+                    <p class="fw-bold fs-5 mt-auto mb-3" style="color: var(--brand-orange);">₹130</p>
+                    <form action="{% url 'add_to_cart' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="product_name" value="Coriander Powder">
+                        <div class="input-group">
+                            <input type="text" inputmode="numeric" pattern="[0-9]*" name="quantity" class="form-control text-center" value="1" style="width: 60%; border-color: #dee2e6;">
+                            <button type="submit" class="btn add-to-cart-btn" style="background-color: var(--brand-red); color: white; width: 40%;">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="{% url 'products' %}" class="btn btn-lg px-5 fw-bold" style="background-color: var(--brand-red); color: white;">
+            View All Products <i class="fas fa-arrow-right ms-2"></i>
         </a>
     </div>
 </div>
 
-<!-- Featured Products Section -->
-<div class="container mt-5">
-    <h2 class="text-center mb-5 fw-bold" style="color: var(--brand-dark);">Featured Products</h2>
-    
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <!-- Card 1: Garam Masala -->
-        <div class="col">
-            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-                <img src="{% static 'images/garam.webp' %}" class="card-img-top" alt="Garam Masala" style="height: 240px; object-fit: cover;">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Garam Masala</h5>
-                    <p class="card-text text-muted small">A perfect blend of whole spices for a rich, aromatic flavor.</p>
-                    <p class="fw-bold fs-5 mb-4" style="color: var(--brand-orange);">₹150</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-secondary w-100 rounded-pill">View Details</a>
-                </div>
+<!-- HOW IT WORKS SECTION -->
+<div class="container mb-5 py-5">
+    <h2 class="text-center fw-bold mb-5">
+        <span class="section-title">How It Works</span>
+    </h2>
+
+    <div class="row g-4 mt-4">
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="step-icon">
+                <i class="fas fa-shopping-bag"></i>
             </div>
+            <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Browse & Select</h5>
+            <p class="text-muted small">Explore our collection of premium spices and choose your favorites.</p>
         </div>
 
-        <!-- Card 2: Turmeric Powder -->
-        <div class="col">
-            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-                <img src="{% static 'images/turmeric.webp' %}" class="card-img-top" alt="Turmeric Powder" style="height: 240px; object-fit: cover;">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Turmeric Powder</h5>
-                    <p class="card-text text-muted small">Pure, organic turmeric packed with high curcumin levels.</p>
-                    <p class="fw-bold fs-5 mb-4" style="color: var(--brand-orange);">₹120</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-secondary w-100 rounded-pill">View Details</a>
-                </div>
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="step-icon">
+                <i class="fas fa-cart-plus"></i>
             </div>
+            <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Add to Cart</h5>
+            <p class="text-muted small">Add desired quantities to your cart with just one click.</p>
         </div>
 
-        <!-- Card 3: Chilli Powder -->
-        <div class="col">
-            <div class="card h-100 border-0 shadow-sm rounded-3 overflow-hidden">
-                <img src="{% static 'images/chilli.webp' %}" class="card-img-top" alt="Chilli Powder" style="height: 240px; object-fit: cover;">
-                <div class="card-body text-center p-4">
-                    <h5 class="card-title fw-bold" style="color: var(--brand-dark);">Chilli Powder</h5>
-                    <p class="card-text text-muted small">Vibrant red chilli powder to give your dishes the perfect heat.</p>
-                    <p class="fw-bold fs-5 mb-4" style="color: var(--brand-orange);">₹140</p>
-                    <a href="{% url 'products' %}" class="btn btn-outline-secondary w-100 rounded-pill">View Details</a>
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="step-icon">
+                <i class="fas fa-credit-card"></i>
+            </div>
+            <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Checkout</h5>
+            <p class="text-muted small">Complete your order securely and choose your delivery option.</p>
+        </div>
+
+        <div class="col-md-6 col-lg-3 text-center">
+            <div class="step-icon">
+                <i class="fas fa-truck-fast"></i>
+            </div>
+            <h5 class="fw-bold mb-2" style="color: var(--brand-dark);">Receive & Enjoy</h5>
+            <p class="text-muted small">Get your fresh spices delivered and elevate your cooking!</p>
+        </div>
+    </div>
+</div>
+
+<!-- STATISTICS SECTION -->
+<div style="background: linear-gradient(135deg, rgba(139, 38, 29, 0.05) 0%, rgba(192, 87, 37, 0.05) 100%); padding: 60px 0; border-radius: 20px; margin-bottom: 60px;">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-box">
+                    <h3 class="fw-bold display-5" style="color: var(--brand-red);">5000+</h3>
+                    <p class="text-muted fw-bold">Happy Customers</p>
+                    <small class="text-muted">Trusted by families across India</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-box">
+                    <h3 class="fw-bold display-5" style="color: var(--brand-red);">8+</h3>
+                    <p class="text-muted fw-bold">Premium Spices</p>
+                    <small class="text-muted">Handpicked authentic varieties</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-box">
+                    <h3 class="fw-bold display-5" style="color: var(--brand-red);">100%</h3>
+                    <p class="text-muted fw-bold">Pure & Authentic</p>
+                    <small class="text-muted">Zero additives, zero compromise</small>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 mb-4">
+                <div class="stat-box">
+                    <h3 class="fw-bold display-5" style="color: var(--brand-red);">4.8★</h3>
+                    <p class="text-muted fw-bold">Average Rating</p>
+                    <small class="text-muted">Customer satisfaction guaranteed</small>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- TESTIMONIALS SECTION -->
+<div class="container mb-5 py-5">
+    <h2 class="text-center fw-bold mb-5">
+        <span class="section-title">What Our Customers Say</span>
+    </h2>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="testimonial-card">
+                <div class="mb-3">
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                </div>
+                <p class="mb-3">
+                    "The freshness of these spices is incredible! My cooking has never tasted better. Highly recommend!"
+                </p>
+                <p class="fw-bold" style="color: var(--brand-dark);">— Priya Kumar</p>
+                <small class="text-muted">Verified Customer</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="testimonial-card">
+                <div class="mb-3">
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                </div>
+                <p class="mb-3">
+                    "Perfect quality and amazing customer service. The delivery was faster than expected. Worth every penny!"
+                </p>
+                <p class="fw-bold" style="color: var(--brand-dark);">— Rajesh Patel</p>
+                <small class="text-muted">Verified Customer</small>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="testimonial-card">
+                <div class="mb-3">
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                    <i class="fas fa-star" style="color: var(--brand-orange);"></i>
+                </div>
+                <p class="mb-3">
+                    "No additives, no preservatives - just pure spices! My family loves it and we're ordering again!"
+                </p>
+                <p class="fw-bold" style="color: var(--brand-dark);">— Anita Singh</p>
+                <small class="text-muted">Verified Customer</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEWSLETTER/CTA SECTION -->
+<div class="cta-section mb-5">
+    <div class="container">
+        <h2 class="fw-bold mb-4">Get Exclusive Offers & Tips</h2>
+        <p class="fs-5 mb-4">Subscribe to our newsletter for recipes, cooking tips, and special discounts!</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-2">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter your email" style="border-radius: 50px 0 0 50px;">
+                    <button class="btn btn-light fw-bold px-4" type="button" style="border-radius: 0 50px 50px 0;">
+                        Subscribe <i class="fas fa-paper-plane ms-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FINAL CTA SECTION -->
+<div class="container mb-5">
+    <div class="row align-items-center">
+        <div class="col-lg-6">
+            <h2 class="fw-bold mb-4" style="color: var(--brand-dark);">Ready to Elevate Your Cooking?</h2>
+            <p class="fs-5 text-muted mb-4">
+                Join thousands of satisfied customers who have discovered the magic of authentic, fresh masalas. Start your culinary journey today!
+            </p>
+            <div class="d-flex gap-3">
+                <a href="{% url 'products' %}" class="btn btn-lg fw-bold px-5" style="background-color: var(--brand-red); color: white;">
+                    Explore Products
+                </a>
+                <a href="{% url 'contact' %}" class="btn btn-lg fw-bold px-5 btn-outline-secondary">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center">
+            <div style="font-size: 150px; opacity: 0.2;">
+                <i class="fas fa-mortar-pestle"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Smooth scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.feature-card, .product-card, .testimonial-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        cards.forEach(card => observer.observe(card));
+    });
+</script>
 {% endblock %}
